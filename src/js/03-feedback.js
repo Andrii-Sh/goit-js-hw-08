@@ -35,6 +35,7 @@ function handleFormInput(evt) {
 
 function createFeedbackObj(evt) {
     feedBackObj[evt.target.name] = evt.target.value;
+    console.log(feedBackObj);
 };
 
 function saveFeedbackOdj(obj) {
@@ -48,23 +49,25 @@ function updateForm() {
     // messageEl.value = savedFeedbackObj.message || "";
 
 //===============================================================================//
-    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+    const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
 
-    // if (savedFeedbackObj.email) {
-    //     emailEl.value = savedFeedbackObj.email;
-    // }
+    if (savedFeedbackObj.email) {
+        emailEl.value = savedFeedbackObj.email;
+        feedBackObj.email = savedFeedbackObj.email;
+    }
 
-    // if (savedFeedbackObj.message) {
-    //     messageEl.value = savedFeedbackObj.message;
-    // }
+    if (savedFeedbackObj.message) {
+        messageEl.value = savedFeedbackObj.message;
+        feedBackObj.message = savedFeedbackObj.message;
+    }
 
 //===============================================================================//
 
-    const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
 
-    emailEl.value = savedFeedbackObj.email ? savedFeedbackObj.email : "";
+    // emailEl.value = savedFeedbackObj.email ? savedFeedbackObj.email : "";
 
-    messageEl.value = savedFeedbackObj.message ? savedFeedbackObj.message : "";
+    // messageEl.value = savedFeedbackObj.message ? savedFeedbackObj.message : "";
 
 //===============================================================================//
 
