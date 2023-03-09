@@ -35,7 +35,6 @@ function handleFormInput(evt) {
 
 function createFeedbackObj(evt) {
     feedBackObj[evt.target.name] = evt.target.value;
-    console.log(feedBackObj);
 };
 
 function saveFeedbackOdj(obj) {
@@ -43,12 +42,6 @@ function saveFeedbackOdj(obj) {
 }
 
 function updateForm() {
-
-    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
-    // emailEl.value = savedFeedbackObj.email || "";
-    // messageEl.value = savedFeedbackObj.message || "";
-
-//===============================================================================//
     const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
 
     if (savedFeedbackObj.email) {
@@ -60,6 +53,20 @@ function updateForm() {
         messageEl.value = savedFeedbackObj.message;
         feedBackObj.message = savedFeedbackObj.message;
     }
+}
+
+
+
+//Update - alternative solutions vvv
+
+//===============================================================================//
+
+
+    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+    // emailEl.value = savedFeedbackObj.email || "";
+    // messageEl.value = savedFeedbackObj.message || "";
+
+
 
 //===============================================================================//
 
@@ -80,5 +87,4 @@ function updateForm() {
         // emailEl.value = "";
     //     messageEl.value = "";
     // };
-}
 
