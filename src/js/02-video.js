@@ -2,6 +2,8 @@
 import Player from "@vimeo/player";
 const throttle = require('lodash.throttle');
 
+const LOCALSTORAGE_CURTIME_KEY = "videoplayer-current-time";
+
 const iframe = document.querySelector('iframe');
     const player = new Player(iframe);
 
@@ -14,11 +16,22 @@ player.getVideoTitle().then(function(title) {
 });
 
 const onTimeupdate = function (data) { 
-    const currentTime = data.seconds;
-    console.log(currentTime);
+    localStorage.setItem(LOCALSTORAGE_CURTIME_KEY, data.seconds);
 };
 
-const throttledOnTimeupdate = throttle(onTimeupdate, 1000);
+player.on('timeupdate', throttle(onTimeupdate, 1000));
 
-player.on('timeupdate', throttledOnTimeupdate);
+player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY)).then(function (seconds) {
+    console.log("Current playback position is ", seconds, " seconds");
+}).catch(function(error) {
+    switch (error.name) {
+        case 'RangeError':
+            console.log("Error type: ", error.name);
+            break;
+
+        default:
+            console.log("Error type: ", error.name);
+            break;
+    }
+});
 
