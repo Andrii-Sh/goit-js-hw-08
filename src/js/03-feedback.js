@@ -24,8 +24,6 @@ function handleFormSubmit(evt) {
     console.log("Email: ", emailEl.value);
     console.log("Message: ", messageEl.value);
 
-    // updateForm();
-
     evt.currentTarget.reset();
     localStorage.removeItem(FEEDBACK_FORM_KEY);
 }
