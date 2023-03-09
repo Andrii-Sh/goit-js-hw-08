@@ -17,8 +17,14 @@ updateForm();
 function handleFormSubmit(evt) {
     evt.preventDefault();
 
+    if (emailEl.value === "" || messageEl.value === "") {
+        return alert("Please fill in all the fields!");
+    }
+
     console.log("Email: ", emailEl.value);
     console.log("Message: ", messageEl.value);
+
+    // updateForm();
 
     evt.currentTarget.reset();
     localStorage.removeItem(FEEDBACK_FORM_KEY);
@@ -38,10 +44,40 @@ function saveFeedbackOdj(obj) {
 }
 
 function updateForm() {
-    if (localStorage.getItem(FEEDBACK_FORM_KEY)) {
-        const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
-        emailEl.value = savedFeedbackObj.email;
-        messageEl.value = savedFeedbackObj.message;
-    }
+
+    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+    // emailEl.value = savedFeedbackObj.email || "";
+    // messageEl.value = savedFeedbackObj.message || "";
+
+//===============================================================================//
+    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+
+    // if (savedFeedbackObj.email) {
+    //     emailEl.value = savedFeedbackObj.email;
+    // }
+
+    // if (savedFeedbackObj.message) {
+    //     messageEl.value = savedFeedbackObj.message;
+    // }
+
+//===============================================================================//
+
+    const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+
+    emailEl.value = savedFeedbackObj.email ? savedFeedbackObj.email : "";
+
+    messageEl.value = savedFeedbackObj.message ? savedFeedbackObj.message : "";
+
+//===============================================================================//
+
+    // if (localStorage.getItem(FEEDBACK_FORM_KEY)) {
+    //     const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
+    //     emailEl.value = savedFeedbackObj.email;
+    //     messageEl.value = savedFeedbackObj.message;
+    // }
+    //  else { 
+        // emailEl.value = "";
+    //     messageEl.value = "";
+    // };
 }
 
