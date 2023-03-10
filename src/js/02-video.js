@@ -21,17 +21,12 @@ const onTimeupdate = function (data) {
 
 player.on('timeupdate', throttle(onTimeupdate, 1000));
 
-player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY)).then(function (seconds) {
-    console.log("Current playback position is ", seconds, " seconds");
-}).catch(function(error) {
-    switch (error.name) {
-        case 'RangeError':
-            console.log("Error type: ", error.name);
-            break;
+let seconds;
 
-        default:
-            console.log("Error type: ", error.name);
-            break;
-    }
-});
+try {
+    seconds = player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY));
+} catch (error) {
+    console.log(error.massage);
+}
 
+player.setCurrentTime(seconds);

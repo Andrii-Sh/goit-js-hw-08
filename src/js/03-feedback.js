@@ -1,7 +1,7 @@
 
 const throttle = require('lodash.throttle');
 
-const feedBackObj = {};
+let feedBackObj = {};
 
 const formEl = document.querySelector('.feedback-form');
 const emailEl = document.querySelector('.feedback-form input');
@@ -21,10 +21,10 @@ function handleFormSubmit(evt) {
         return alert("Please fill in all the fields!");
     }
 
-    console.log("Email: ", emailEl.value);
-    console.log("Message: ", messageEl.value);
+    console.log(feedBackObj);
 
     evt.currentTarget.reset();
+    feedBackObj = {};
     localStorage.removeItem(FEEDBACK_FORM_KEY);
 }
 
@@ -44,47 +44,12 @@ function saveFeedbackOdj(obj) {
 function updateForm() {
     const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
 
-    if (savedFeedbackObj.email) {
+    if (savedFeedbackObj) {
         emailEl.value = savedFeedbackObj.email;
         feedBackObj.email = savedFeedbackObj.email;
-    }
 
-    if (savedFeedbackObj.message) {
         messageEl.value = savedFeedbackObj.message;
         feedBackObj.message = savedFeedbackObj.message;
-    }
+    }   
 }
-
-
-
-//Update - alternative solutions vvv
-
-//===============================================================================//
-
-
-    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
-    // emailEl.value = savedFeedbackObj.email || "";
-    // messageEl.value = savedFeedbackObj.message || "";
-
-
-
-//===============================================================================//
-
-    // const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
-
-    // emailEl.value = savedFeedbackObj.email ? savedFeedbackObj.email : "";
-
-    // messageEl.value = savedFeedbackObj.message ? savedFeedbackObj.message : "";
-
-//===============================================================================//
-
-    // if (localStorage.getItem(FEEDBACK_FORM_KEY)) {
-    //     const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
-    //     emailEl.value = savedFeedbackObj.email;
-    //     messageEl.value = savedFeedbackObj.message;
-    // }
-    //  else { 
-        // emailEl.value = "";
-    //     messageEl.value = "";
-    // };
 
