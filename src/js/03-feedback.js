@@ -44,12 +44,10 @@ function saveFeedbackOdj(obj) {
 function updateForm() {
     const savedFeedbackObj = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
 
-    if (savedFeedbackObj) {
-        emailEl.value = savedFeedbackObj.email;
-        feedBackObj.email = savedFeedbackObj.email;
+    emailEl.value = savedFeedbackObj.email || "";
+    feedBackObj.email = savedFeedbackObj.email || "";
 
-        messageEl.value = savedFeedbackObj.message;
-        feedBackObj.message = savedFeedbackObj.message;
-    }   
+    messageEl.value = savedFeedbackObj.message || "";
+    feedBackObj.message = savedFeedbackObj.message || "";
 }
 

@@ -21,12 +21,5 @@ const onTimeupdate = function (data) {
 
 player.on('timeupdate', throttle(onTimeupdate, 1000));
 
-let seconds;
+player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY) || 0);
 
-try {
-    seconds = player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY));
-} catch (error) {
-    console.log(error.massage);
-}
-
-player.setCurrentTime(seconds);
