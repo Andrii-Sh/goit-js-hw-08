@@ -21,5 +21,11 @@ const onTimeupdate = function (data) {
 
 player.on('timeupdate', throttle(onTimeupdate, 1000));
 
-player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY) || 0);
+
+if (localStorage.getItem(LOCALSTORAGE_CURTIME_KEY)) {
+    player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_CURTIME_KEY))
+} else {
+    player.setCurrentTime(0)
+};
+
 
